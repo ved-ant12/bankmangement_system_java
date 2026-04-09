@@ -15,6 +15,7 @@ public class signupone extends JFrame implements ActionListener
     JRadioButton male,female,unmarried,married;
     JDateChooser DOB_Box ;
     JButton next;
+    
     public signupone()
     {
          setLayout(null);
@@ -210,7 +211,7 @@ public class signupone extends JFrame implements ActionListener
   
    public void actionPerformed(ActionEvent e)
     {
-        String formno=" "+random;
+        String form_no=" "+random;
         String name=name_box.getText();
         String fname=father_box.getText();
         String dob=((JTextField)DOB_Box.getDateEditor().getUiComponent()).getText();
@@ -249,10 +250,13 @@ public class signupone extends JFrame implements ActionListener
                else
                {
                    con c =new con();
-                   String query="INSERT INTO signup values('"+formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+e_mail+"','"+married_status+"','"+address+"','"+city+"','"+State+"','"+Pin+"')";
+                   String query="INSERT INTO signup values('"+form_no+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+e_mail+"','"+married_status+"','"+address+"','"+city+"','"+State+"','"+Pin+"')";
                    c.s.executeUpdate(query);  
                    JOptionPane.showMessageDialog(null,"Data Inserted Successfully");
+                  setVisible(false);
+                  new signuptwo(form_no).setVisible(true);
                }
+               
           }
           catch(Exception ex)
           {
